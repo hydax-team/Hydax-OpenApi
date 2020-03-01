@@ -2,8 +2,8 @@ package io.broker.api.client;
 
 import io.broker.api.client.constant.BrokerConstants;
 import io.broker.api.client.impl.BrokerApiRestClientImpl;
+import io.broker.api.client.impl.BrokerApiServiceGenerator;
 import io.broker.api.client.impl.BrokerApiWebSocketClientImpl;
-import io.broker.api.client.impl.BrokerOptionApiRestClientImpl;
 import io.broker.api.client.impl.BrokerContractApiRestClientImpl;
 
 import static io.broker.api.client.impl.BrokerApiServiceGenerator.getSharedClient;
@@ -28,7 +28,6 @@ public final class BrokerApiClientFactory {
     /**
      * Instantiates a new Broker api client factory.
      *
-     * @param baseUrl Api base url
      * @param apiKey the API key
      * @param secret the Secret
      */
@@ -46,7 +45,6 @@ public final class BrokerApiClientFactory {
     /**
      * New instance.
      *
-     * @param baseUrl Api base url
      * @param apiKey the API key
      * @param secret the Secret
      * @return the Broker api client factory
@@ -56,7 +54,7 @@ public final class BrokerApiClientFactory {
     }
 
     /**
-     * for bhop.cloud client and inner test only
+     * New instance
      *
      * @param baseUrl
      * @param apiKey
@@ -89,23 +87,6 @@ public final class BrokerApiClientFactory {
         return new BrokerApiWebSocketClientImpl(BrokerApiServiceGenerator.getSharedClient(), BrokerConstants.WS_API_BASE_URL, BrokerConstants.WS_API_USER_URL);
     }
 
-    /**
-     * for bhop.cloud client and inner test only
-     *
-     * @param wsApiBaseUrl
-     * @param wsApiUserUrl
-     * @return
-     */
-    public BrokerApiWebSocketClient newWebSocketClient(String wsApiBaseUrl, String wsApiUserUrl) {
-        return new BrokerApiWebSocketClientImpl(BrokerApiServiceGenerator.getSharedClient(), wsApiBaseUrl, wsApiUserUrl);
-    }
-
-    /**
-     * Creates a new synchronous/blocking Option REST client.
-     */
-    public BrokerOptionApiRestClient newOptionRestClient() {
-        return new BrokerOptionApiRestClientImpl(baseUrl, apiKey, secret);
-    }
 
     /**
      * Creates a new synchronous/blocking Contract REST client.
